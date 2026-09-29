@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>TN Power Cut</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #080b12;
+    --panel: #10151f;
+    --panel2: #151b27;
+    --border: rgba(255,255,255,.08);
+    --text: #f5f7fb;
+    --muted: #8d96a8;
+    --accent: #ffb300;
+    --accent2: #ff7a00;
+    --danger: #ff4d67;
+    --success: #24d47b;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,179,0,.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(255,89,0,.08),
+            transparent 30%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* HEADER */
+
+header {
+
+    padding:
+        22px 18px 15px;
+
+    max-width: 900px;
+
+    margin: auto;
+
+}
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.logo {
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 14px;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    color: #111;
+
+    box-shadow:
+        0 10px 35px
+        rgba(255,179,0,.18);
+
+}
+
+.brand h1 {
+
+    font-size: 21px;
+
+    letter-spacing: -.4px;
+
+}
+
+.brand p {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* MAIN */
+
+main {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    padding:
+        10px 16px 50px;
+
+}
+
+
+/* HERO */
+
+.hero {
+
+    padding:
+        28px 0 24px;
+
+}
+
+.hero h2 {
+
+    font-size:
+        clamp(28px, 7vw, 44px);
+
+    line-height: 1.05;
+
+    letter-spacing: -1.5px;
+
+}
+
+.hero h2 span {
+
+    color: var(--accent);
+
+}
+
+.hero p {
+
+    color: var(--muted);
+
+    margin-top: 12px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* SEARCH */
+
+.search-box {
+
+    background:
+        rgba(16,21,31,.88);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 22px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.25);
+
+}
+
+.label {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-bottom: 9px;
+
+}
+
+select {
+
+    width: 100%;
+
+    height: 52px;
+
+    border-radius: 14px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    background: #0c1119;
+
+    color: white;
+
+    padding:
+        0 14px;
+
+    font-size: 15px;
+
+    outline: none;
+
+}
+
+select:focus {
+
+    border-color:
+        rgba(255,179,0,.6);
+
+}
+
+
+/* BUTTON */
+
+button {
+
+    width: 100%;
+
+    height: 50px;
+
+    margin-top: 13px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    color: #111;
+
+    font-weight: 800;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        transform .15s ease,
+        opacity .15s ease;
+
+}
+
+button:hover {
+
+    transform: translateY(-1px);
+
+}
+
+button:disabled {
+
+    opacity: .5;
+
+    cursor: not-allowed;
+
+}
+
+
+/* CAPTCHA */
+
+.captcha-section {
+
+    display: none;
+
+    margin-top: 16px;
+
+    padding-top: 16px;
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+.captcha-box {
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+}
+
+.captcha-box img {
+
+    height: 54px;
+
+    min-width: 150px;
+
+    object-fit: contain;
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 3px;
+
+}
+
+.refresh {
+
+    width: 52px;
+
+    height: 52px;
+
+    margin: 0;
+
+    flex-shrink: 0;
+
+    background: #202735;
+
+    color: white;
+
+}
+
+
+/* INPUT */
+
+input {
+
+    width: 100%;
+
+    height: 50px;
+
+    margin-top: 10px;
+
+    padding:
+        0 14px;
+
+    border-radius: 13px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    background:
+        #0c1119;
+
+    color: white;
+
+    outline: none;
+
+    font-size: 16px;
+
+    letter-spacing: 2px;
+
+}
+
+input:focus {
+
+    border-color:
+        rgba(255,179,0,.6);
+
+}
+
+
+/* STATUS */
+
+.status {
+
+    display: none;
+
+    margin-top: 18px;
+
+    padding: 13px 15px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+.status.error {
+
+    display: block;
+
+    color: #ff8090;
+
+    background:
+        rgba(255,77,103,.08);
+
+}
+
+.status.success {
+
+    display: block;
+
+    color: #65eaa4;
+
+    background:
+        rgba(36,212,123,.08);
+
+}
+
+
+/* RESULTS */
+
+.results {
+
+    margin-top: 25px;
+
+}
+
+.result-head {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 12px;
+
+}
+
+.result-head h3 {
+
+    font-size: 18px;
+
+}
+
+.count {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* SHUTDOWN */
+
+.shutdown {
+
+    padding:
+        18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #121925,
+            #0d121b
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 17px;
+
+    margin-bottom: 10px;
+
+}
+
+.shutdown-title {
+
+    font-weight: 700;
+
+    font-size: 15px;
+
+}
+
+.shutdown-time {
+
+    margin-top: 8px;
+
+    color: var(--accent);
+
+    font-size: 13px;
+
+}
+
+.shutdown-values {
+
+    margin-top: 10px;
+
+    color: #aab2c1;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+/* EMPTY */
+
+.empty {
+
+    text-align: center;
+
+    padding: 45px 20px;
+
+    color: var(--muted);
+
+    border:
+        1px dashed
+        rgba(255,255,255,.1);
+
+    border-radius: 17px;
+
+}
+
+
+/* LOADING */
+
+.loader {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: var(--muted);
+
+}
+
+.spinner {
+
+    width: 28px;
+
+    height: 28px;
+
+    border:
+        3px solid
+        rgba(255,255,255,.1);
+
+    border-top-color:
+        var(--accent);
+
+    border-radius: 50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    margin: auto auto 10px;
+
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* FOOTER */
+
+footer {
+
+    text-align: center;
+
+    padding: 25px;
+
+    color: #626b7b;
+
+    font-size: 11px;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+
+    main {
+
+        padding-left: 13px;
+        padding-right: 13px;
+
+    }
+
+    .hero {
+
+        padding-top: 22px;
+
+    }
+
+    .search-box {
+
+        border-radius: 18px;
+
+        padding: 15px;
+
+    }
+
+    .captcha-box img {
+
+        min-width: 130px;
+
+        width: 130px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            ⚡
+        </div>
+
+        <div>
+
+            <h1>
+                TN Power Cut
+            </h1>
+
+            <p>
+                Planned power outage information
+            </p>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+<section class="hero">
+
+    <h2>
+        Check your
+        <span>power shutdown</span>
+    </h2>
+
+    <p>
+        Select your TNPDCL circle and check
+        today's planned outage information.
+    </p>
+
+</section>
+
+
+<section class="search-box">
+
+
+    <label class="label">
+        Select Circle
+    </label>
+
+
+    <select id="circle">
+
+        <option value="">
+            Select Circle
+        </option>
+
+        <option value="0435">
+            CBE / METRO
+        </option>
+
+        <option value="0430">
+            CBE / NORTH
+        </option>
+
+        <option value="0432">
+            CBE / SOUTH
+        </option>
+
+        <option value="0400">
+            CHENNAI SOUTH I
+        </option>
+
+        <option value="0401">
+            CHENNAI SOUTH II
+        </option>
+
+        <option value="0418">
+            CUDDALORE
+        </option>
+
+        <option value="0411">
+            CHENGALPATTU
+        </option>
+
+        <option value="0402">
+            CHENNAI - CENTRAL
+        </option>
+
+        <option value="0404">
+            CHENNAI - NORTH
+        </option>
+
+        <option value="0406">
+            CHENNAI - WEST
+        </option>
+
+        <option value="0420">
+            DHARMAPURI
+        </option>
+
+        <option value="0450">
+            DINDIGUL
+        </option>
+
+        <option value="0426">
+            ERODE
+        </option>
+
+        <option value="0436">
+            GOBI
+        </option>
+
+        <option value="0417">
+            KALLAKURICHI
+        </option>
+
+        <option value="0410">
+            KANCHEEPURAM
+        </option>
+
+        <option value="0474">
+            KANYAKUMARI
+        </option>
+
+        <option value="0443">
+            KARUR
+        </option>
+
+        <option value="0421">
+            KRISHNAGIRI
+        </option>
+
+        <option value="0452">
+            MADURAI
+        </option>
+
+        <option value="0463">
+            MADURAI-METRO
+        </option>
+
+        <option value="0422">
+            METTUR
+        </option>
+
+        <option value="0445">
+            NAGAPATTINAM
+        </option>
+
+        <option value="0437">
+            NAMAKKAL
+        </option>
+
+        <option value="0482">
+            NILGIRIS
+        </option>
+
+        <option value="0439">
+            PALLADAM
+        </option>
+
+        <option value="0440">
+            PERAMBALUR
+        </option>
+
+        <option value="0446">
+            PUDUKKOTTAI
+        </option>
+
+        <option value="0478">
+            RAMNAD
+        </option>
+
+        <option value="0424">
+            SALEM
+        </option>
+
+        <option value="0460">
+            SIVAGANGAI
+        </option>
+
+        <option value="0444">
+            THANJAVUR
+        </option>
+
+        <option value="0476">
+            THENI
+        </option>
+
+        <option value="0447">
+            THIRUVARUR
+        </option>
+
+        <option value="0472">
+            TIRUNELVELI
+        </option>
+
+        <option value="0413">
+            TIRUPATTUR
+        </option>
+
+        <option value="0408">
+            TIRUVALLUR
+        </option>
+
+        <option value="0414">
+            TIRUVANNAMALAI
+        </option>
+
+        <option value="0442">
+            TRICHY METRO
+        </option>
+
+        <option value="0470">
+            TUTICORIN
+        </option>
+
+        <option value="0438">
+            TIRUPPUR
+        </option>
+
+        <option value="0434">
+            UDUMALPET
+        </option>
+
+        <option value="0412">
+            VELLORE
+        </option>
+
+        <option value="0416">
+            VILLUPURAM
+        </option>
+
+        <option value="0462">
+            VIRUDUNAGAR
+        </option>
+
+    </select>
+
+
+    <button
+        id="startBtn"
+        onclick="startSession()"
+    >
+        Continue
+    </button>
+
+
+    <!-- CAPTCHA -->
+
+    <div
+        class="captcha-section"
+        id="captchaSection"
+    >
+
+        <label class="label">
+            Enter the text shown in the image
+        </label>
+
+
+        <div class="captcha-box">
+
+            <img
+                id="captchaImage"
+                alt="TNPDCL CAPTCHA"
+            >
+
+            <button
+                class="refresh"
+                onclick="refreshCaptcha()"
+                title="Refresh CAPTCHA"
+            >
+                ↻
+            </button>
+
+        </div>
+
+
+        <input
+            id="captchaInput"
+            maxlength="6"
+            autocomplete="off"
+            placeholder="Enter CAPTCHA"
+        >
+
+
+        <button
+            id="submitBtn"
+            onclick="submitShutdown()"
+        >
+            Check Shutdown
+        </button>
+
+    </div>
+
+
+</section>
+
+
+<div
+    id="status"
+    class="status"
+></div>
+
+
+<div
+    id="loader"
+    class="loader"
+>
+
+    <div class="spinner"></div>
+
+    <div>
+        Loading...
+    </div>
+
+</div>
+
+
+<section
+    id="results"
+    class="results"
+></section>
+
+
+</main>
+
+
+<footer>
+
+    Data source:
+    TNPDCL Planned Power Outage Details
+
+</footer>
+
+
+<script>
+
+let sessionId = null;
+
+let selectedCircle = null;
+
+
+// ============================================================
+// START SESSION
+// ============================================================
+
+async function startSession() {
+
+    selectedCircle =
+        document.getElementById("circle").value;
+
+
+    if (!selectedCircle) {
+
+        showStatus(
+            "Please select a circle.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    setLoading(true);
+
+    hideStatus();
+
+
+    try {
+
+        const response =
+            await fetch("/api/session");
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.error ||
+                "Could not create session."
+            );
+
+        }
+
+
+        sessionId =
+            data.session;
+
+
+        document
+            .getElementById("captchaSection")
+            .style.display = "block";
+
+
+        await refreshCaptcha();
+
+
+        document
+            .getElementById("captchaInput")
+            .focus();
+
+
+        showStatus(
+            "Enter the CAPTCHA shown above.",
+            false
+        );
+
+    }
+    catch (error) {
+
+        showStatus(
+            error.message,
+            true
+        );
+
+    }
+    finally {
+
+        setLoading(false);
+
+    }
+
+}
+
+
+// ============================================================
+// CAPTCHA
+// ============================================================
+
+async function refreshCaptcha() {
+
+    if (!sessionId) {
+        return;
+    }
+
+
+    const image =
+        document.getElementById(
+            "captchaImage"
+        );
+
+
+    image.src =
+        "/api/captcha?session=" +
+        encodeURIComponent(sessionId) +
+        "&t=" +
+        Date.now();
+
+}
+
+
+// ============================================================
+// SUBMIT
+// ============================================================
+
+async function submitShutdown() {
+
+    const captcha =
+        document
+            .getElementById("captchaInput")
+            .value
+            .trim();
+
+
+    if (!captcha) {
+
+        showStatus(
+            "Please enter the CAPTCHA.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    if (!sessionId) {
+
+        showStatus(
+            "Session expired. Please start again.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    setLoading(true);
+
+    hideStatus();
+
+
+    document
+        .getElementById("results")
+        .innerHTML = "";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/shutdown",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            session:
+                                sessionId,
+
+                            circle:
+                                selectedCircle,
+
+                            captcha:
+                                captcha
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.captchaError) {
+
+            showStatus(
+                "Incorrect CAPTCHA. Please refresh and try again.",
+                true
+            );
+
+
+            document
+                .getElementById("captchaInput")
+                .value = "";
+
+
+            await refreshCaptcha();
+
+
+            return;
+
+        }
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.error ||
+                "Failed to retrieve shutdown data."
+            );
+
+        }
+
+
+        renderResults(data);
+
+    }
+    catch (error) {
+
+        showStatus(
+            error.message,
+            true
+        );
+
+    }
+    finally {
+
+        setLoading(false);
+
+    }
+
+}
+
+
+// ============================================================
+// RENDER
+// ============================================================
+
+function renderResults(data) {
+
+    const container =
+        document.getElementById("results");
+
+
+    if (
+        !data.shutdowns ||
+        data.shutdowns.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div style="font-size:30px">
+                    ✓
+                </div>
+
+                <div style="margin-top:10px">
+                    No planned shutdown information found.
+                </div>
+
+            </div>
+
+        `;
+
+        showStatus(
+            "Search completed.",
+            false
+        );
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="result-head">
+
+            <h3>
+                Planned Shutdowns
+            </h3>
+
+            <span class="count">
+                ${data.count} result(s)
+            </span>
+
+        </div>
+
+    `;
+
+
+    data.shutdowns.forEach(
+        (item, index) => {
+
+            const div =
+                document.createElement("div");
+
+
+            div.className =
+                "shutdown";
+
+
+            if (item.values) {
+
+                div.innerHTML = `
+
+                    <div class="shutdown-title">
+                        Shutdown ${index + 1}
+                    </div>
+
+                    <div class="shutdown-values">
+                        ${item.values
+                            .map(v =>
+                                escapeHtml(v)
+                            )
+                            .join("<br>")}
+                    </div>
+
+                `;
+
+            }
+            else {
+
+                div.innerHTML = `
+
+                    <div class="shutdown-title">
+                        Shutdown ${index + 1}
+                    </div>
+
+                    <div class="shutdown-values">
+                        ${escapeHtml(item.text || "")}
+                    </div>
+
+                `;
+
+            }
+
+
+            container.appendChild(div);
+
+        }
+    );
+
+
+    showStatus(
+        "Shutdown information loaded.",
+        false
+    );
+
+}
+
+
+// ============================================================
+// UI HELPERS
+// ============================================================
+
+function setLoading(value) {
+
+    document
+        .getElementById("loader")
+        .style.display =
+            value ? "block" : "none";
+
+
+    document
+        .getElementById("startBtn")
+        .disabled = value;
+
+
+    document
+        .getElementById("submitBtn")
+        .disabled = value;
+
+}
+
+
+function showStatus(message, error) {
+
+    const box =
+        document.getElementById("status");
+
+
+    box.textContent =
+        message;
+
+
+    box.className =
+        "status " +
+        (error ? "error" : "success");
+
+}
+
+
+function hideStatus() {
+
+    const box =
+        document.getElementById("status");
+
+
+    box.style.display =
+        "none";
+
+}
+
+
+function escapeHtml(value) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+</script>
+
+
+</body>
+
+</html>
